@@ -45,7 +45,7 @@ const Login = () => {
         <div className='flex bg-[#0068ff] h-[100vh]'>
             <div className="left w-[70%] hidden lg:flex items-center justify-center">
                 <div className="flex w-[400px] h-[400px] rounded-full bg-white items-center justify-center">
-                    <Logo />
+                    <Logo textSize="text-5xl"/>
                 </div>
             </div>
             <div className="right w-[30%] bg-white mx-auto min-w-[400px] px-10 flex items-center">
