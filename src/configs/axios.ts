@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { useAuthStore } from '../stores/useUserStore';
 
 const authAxios = axios.create({
     baseURL: import.meta.env.VITE_APP_USER_MGMT_URL,
@@ -11,7 +12,7 @@ export const baseAxios = axios.create({
 
 authAxios.interceptors.request.use(
     (config) => {
-      const token = localStorage.getItem('token');
+      const token = useAuthStore.getState().token
       if (token) {
         config.headers['Authorization'] = `Bearer ${token}`;
       }

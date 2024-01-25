@@ -1,7 +1,5 @@
-import React from 'react'
-
 interface Props {
-    owner: string,
+    owner: string | undefined,
     expireIn: string,
     img: string, 
     bgTop: string, 

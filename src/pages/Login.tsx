@@ -7,6 +7,7 @@ import Logo from "../components/common/Logo";
 import { Link, useNavigate } from "react-router-dom";
 import userService from "../services/userService";
 import { useAuth } from '../contexts/AuthContext'
+import { useAuthStore } from "../stores/useUserStore";
 
 const Login = () => {
 
@@ -27,11 +28,7 @@ const Login = () => {
             const response = await userService.login(email, password);
             if(response && response.data) {
                 console.log("Result login: ", response.data);
-                dispatchAuthAction({
-                    type: 'SET_TOKEN',
-                    payload: response.data.accessToken
-                });
-                localStorage.setItem('token', response.data.accessToken)
+                useAuthStore.getState().setToken(response.data.accessToken)
                 setIsLoading(false);
                 navigate('/');
             }

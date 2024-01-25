@@ -6,7 +6,7 @@ interface Props {
 
 const Logo = ({ textSize }: Props) => {
     return (
-        <div className={`flex items-center select-none  ${textSize}`}>
+        <div className={`flex items-center select-none  ${textSize} cursor-pointer`}>
             <IoWalletOutline className="text-[#0068ff]"/>
             <p className={`text-[#0068ff] ml-2 font-bold tracking-widest`}>DAPEX</p>
         </div>

@@ -18,3 +18,12 @@ export interface AuthReducerAction {
 export interface AuthProviderProps {
     children: ReactNode;
 }
+
+export interface AuthState {
+    token: string | null
+}
+
+export interface AuthAction {
+    setToken: (token: string) => void,
+    logOut: () => void
+}

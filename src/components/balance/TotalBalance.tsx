@@ -4,7 +4,7 @@ import { IoNotificationsOutline } from 'react-icons/io5'
 
 const TotalBalance = () => {
     return (
-        <div className='rounded-md bg-[#ffffff] p-4 shadow-sm space-y-2 min-w-[280px] w-[30%]'>
+        <div className='rounded-md bg-[#ffffff] p-4 shadow-sm space-y-2 min-w-[280px]'>
             <p className='text-[12px] text-[#a5a5a5]'>Total balance</p>
             <div className='flex justify-between items-center'>
                 <div className="flex items-center space-x-2">
