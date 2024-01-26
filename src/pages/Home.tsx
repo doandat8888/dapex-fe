@@ -8,6 +8,8 @@ import SideBar from '../components/sidebar/SideBar';
 import { useAuthStore } from '../stores/useUserStore';
 import { useUserStore } from '../stores/useUserStore';
 import { MdOutlineArrowDropDown } from "react-icons/md";
+import { formatVNDCurrency } from '../utils/formatCurrency';
+import { calcTotalExpense, calcTotalIncome } from '../utils/calcMoney';
 
 const Home = () => {
     const pathName = useLocation().pathname;
@@ -26,7 +28,7 @@ const Home = () => {
     return (
         <div className='flex bg-[#f3f8ff] h-[100vh]'>
             <SideBar activePage={activePage} />
-            <div className='px-8 space-y-4 flex-grow'>
+            <div className='px-8 space-y-4 flex-grow lg:ml-[240px]'>
                 <p className='font-bold text-xl py-4'>Wallet</p>
                 <div className="flex space-x-3">
                     <TotalBalance />
@@ -38,15 +40,15 @@ const Home = () => {
                         <div className="rounded-lg text-black shadow-sm flex items-center space-x-4 flex-grow">
                             <div className='space-y-2 p-4 w-[33.33%] bg-white'>
                                 <p className='text-[#c2c2c2] text-sm'>Transactions</p>
-                                <p className='text-xl font-bold'>10</p>
+                                <p className='text-xl font-bold'>{consts.transactions.length}</p>
                             </div>
                             <div className='space-y-2 p-4 w-[33.33%] bg-white'>
                                 <p className='text-[#c2c2c2] text-sm'>Total spend</p>
-                                <p className='text-xl font-bold'>đ3.500.000</p>
+                                <p className='text-xl font-bold'>{formatVNDCurrency(calcTotalExpense())}</p>
                             </div>
                             <div className='space-y-2 p-4 w-[33.33%] bg-white'>
-                                <p className='text-[#c2c2c2] text-sm'>Total callback</p>
-                                <p className='text-xl font-bold'>đ4.500.000</p>
+                                <p className='text-[#c2c2c2] text-sm'>Total income</p>
+                                <p className='text-xl font-bold'>{formatVNDCurrency(calcTotalIncome())}</p>
                             </div>
                         </div>
                     </div>

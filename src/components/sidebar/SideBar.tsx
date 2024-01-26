@@ -1,6 +1,7 @@
 import Logo from '../common/Logo'
 import MenuItem from '../menu/MenuItem'
 import consts from '../../consts'
+import { AiOutlineLogout } from "react-icons/ai";
 
 interface Props {
     activePage: number | undefined
@@ -9,7 +10,7 @@ interface Props {
 const SideBar = ({ activePage }: Props) => {
 
     return (
-        <div className="min-w-[240px] lg:w-[10%] lg:block hidden bg-white">
+        <div className="min-w-[240px] lg:w-[10%] lg:block hidden bg-white fixed">
             <div className="logo p-4 border border-b-gray-300">
                 <Logo textSize="text-2xl" />
             </div>
@@ -17,6 +18,9 @@ const SideBar = ({ activePage }: Props) => {
                 {consts.menuList.map((item, index) =>
                     <MenuItem path={item.path} isActive={activePage === index + 1} key={index} content={item.name} logo={item.logo} />
                 )}
+            </div>
+            <div className="px-4 py-8 flex-grow items-end">
+                <MenuItem content={"Log out"} logo={AiOutlineLogout} />
             </div>
         </div>
     )
