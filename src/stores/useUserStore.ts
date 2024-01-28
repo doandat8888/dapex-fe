@@ -11,9 +11,15 @@ export const useAuthStore = createWithEqualityFn<AuthState & AuthAction>()(
         persist(
             (set) => ({
                 token: '',
+                refreshToken: '',
                 setToken: (token: string) => {
                     set((state) => {
                         state.token = token
+                    })
+                },
+                setRefreshToken: (refreshToken: string) => {
+                    set((state) => {
+                        state.refreshToken = refreshToken
                     })
                 },
                 logOut: () => {

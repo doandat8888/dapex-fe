@@ -20,10 +20,12 @@ export interface AuthProviderProps {
 }
 
 export interface AuthState {
-    token: string | null
+    token: string | null,
+    refreshToken: string | null
 }
 
 export interface AuthAction {
     setToken: (token: string) => void,
     logOut: () => void
+    setRefreshToken: (refreshToken: string) => void
 }

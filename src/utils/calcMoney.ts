@@ -1,13 +1,13 @@
 import consts from "../consts";
 
-export const calcTotalExpense = () => {
-    const expenseTransactions = consts.transactions.filter((transaction) => transaction.typeId === 1);
-    const totalExpense = expenseTransactions.reduce((prev, expenseTransaction) => prev + expenseTransaction.amount, 0);
+export const calcTotalExpense = (transactions: any) => {
+    const expenseTransactions = transactions.filter((transaction: any) => transaction.typeId === "65b45e8ac06aa8dfa60a525b");
+    const totalExpense = expenseTransactions.reduce((prev: number, expenseTransaction: any) => prev + expenseTransaction.amount, 0);
     return totalExpense;
 }
 
-export const calcTotalIncome = () => {
-    const incomeTransactions = consts.transactions.filter((transaction) => transaction.typeId === 2);
-    const totalIncome = incomeTransactions.reduce((prev, incomeTransaction) => prev + incomeTransaction.amount, 0);
+export const calcTotalIncome = (transactions: any) => {
+    const incomeTransactions = transactions.filter((transaction: any) => transaction.typeId === "65b45eb1c06aa8dfa60a525c");
+    const totalIncome = incomeTransactions.reduce((prev: number, incomeTransaction: any) => prev + incomeTransaction.amount, 0);
     return totalIncome;
 }

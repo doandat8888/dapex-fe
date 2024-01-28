@@ -16,45 +16,39 @@ const menuList = [
     },
     {
         id: 2,
-        name: 'Transaction',
+        name: 'Transactions',
         logo: AiOutlineTransaction,
         path: '/transaction'
     },
-    {
-        id: 3,
-        name: 'Portfolio',
-        logo: BsPersonVcardFill,
-        path: '/portfolio'
-    }
 ]
 
 const transactionCategory = [
     {
-        id: 1,
+        id: "65b45ca6c06aa8dfa60a5256",
         name: "electricbill",
         label: "Electric bill",
         img: GiElectric
     },
     {
-        id: 2,
+        id: "65b45d1dc06aa8dfa60a5257",
         name: "waterbill",
         label: "Water bill",
         img: IoWaterOutline
     },
     {
-        id: 3,
+        id: "65b45d96c06aa8dfa60a5258",
         name: "internetbill",
         label: "Internet bill",
         img: IoWifi
     },
     {
-        id: 4,
+        id: "65b45e28c06aa8dfa60a5259",
         name: "salary",
         label: "Salary",
         img: FaRegMoneyBillAlt
     },
     {
-        id: 5,
+        id: "65b45e5fc06aa8dfa60a525a",
         name: "phonebill",
         label: "Phone bill",
         img: CiMobile1
@@ -63,12 +57,12 @@ const transactionCategory = [
 
 const transactionType = [
     {
-        id: 1,
+        id: "65b45e8ac06aa8dfa60a525b",
         type: "expense",
         label: "Expense"
     },
     {
-        id: 2,
+        id: "65b45eb1c06aa8dfa60a525c",
         type: "income",
         label: "Income"
     }
@@ -77,38 +71,38 @@ const transactionType = [
 const transactions = [
     {
         id: 1,
-        categoryId: 1,
-        date: "March 10, 2023",
+        categoryId: "65b45ca6c06aa8dfa60a5256",
+        createdAt: "March 10, 2023",
         amount: 300000,
-        typeId: 1
+        typeId: "65b45e8ac06aa8dfa60a525b"
     },
     {
         id: 2,
-        categoryId: 2,
-        date: "March 12, 2023",
+        categoryId: "65b45d1dc06aa8dfa60a5257",
+        createdAt: "March 12, 2023",
         amount: 120000,
-        typeId: 1
+        typeId: "65b45e8ac06aa8dfa60a525b"
     },
     {
         id: 3,
-        categoryId: 3,
-        date: "March 14, 2023",
+        categoryId: "65b45d96c06aa8dfa60a5258",
+        createdAt: "March 14, 2023",
         amount: 230000,
-        typeId: 1
+        typeId: "65b45e8ac06aa8dfa60a525b"
     },
     {
         id: 4,
-        categoryId: 4,
-        date: "March 20, 2023",
+        categoryId: "65b45e28c06aa8dfa60a5259",
+        createdAt: "March 20, 2023",
         amount: 5750000,
-        typeId: 2
+        typeId: "65b45eb1c06aa8dfa60a525c"
     },
     {
         id: 5,
-        categoryId: 5,
-        date: "March 20, 2023",
+        categoryId: "65b45e5fc06aa8dfa60a525a",
+        createdAt: "March 20, 2023",
         amount: 23000,
-        typeId: 1
+        typeId: "65b45e8ac06aa8dfa60a525b"
     },
 ];
 
@@ -118,8 +112,8 @@ const columns = [
         uid: "name",
     },
     {
-        name: "Date",
-        uid: "date",
+        name: "Created at",
+        uid: "createdAt",
     },
     {
         name: "Amount",

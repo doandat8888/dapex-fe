@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router';
 import consts from '../consts/index';
 import { useLocation } from 'react-router'
@@ -7,51 +7,43 @@ import Card from '../components/cards/Card';
 import SideBar from '../components/sidebar/SideBar';
 import { useAuthStore } from '../stores/useUserStore';
 import { useUserStore } from '../stores/useUserStore';
-import { MdOutlineArrowDropDown } from "react-icons/md";
-import { formatVNDCurrency } from '../utils/formatCurrency';
-import { calcTotalExpense, calcTotalIncome } from '../utils/calcMoney';
+import UserAvatar from '../components/user/UserAvatar';
+import useSWR from 'swr';
+import transactionService from '../services/transactionService';
+import Dashboard from '../components/balance/Dashboard';
 
 const Home = () => {
+
     const pathName = useLocation().pathname;
     const activePage = consts.menuList.find(menu => menu.path === pathName)?.id;
     const token = useAuthStore.getState().token;
     const navigate = useNavigate();
+
     const [user, getUserProfile] = useUserStore((state) => [state.userProfile, state.getCurrentUser])
+    const { data, error, isLoading } = useSWR('/user/transactions', transactionService.getCurrentUserTransaction);
 
     useEffect(() => {
-        if (!token) {
-            navigate('/')
-        }
         getUserProfile();
     }, [token, getUserProfile]);
+
+    if(error) return "Error when fetching data"
+
+    if(isLoading) return <p>Loading...</p>
+
+    const transactions = data?.data;
+
 
     return (
         <div className='flex bg-[#f3f8ff] h-[100vh]'>
             <SideBar activePage={activePage} />
             <div className='px-8 space-y-4 flex-grow lg:ml-[240px]'>
-                <p className='font-bold text-xl py-4'>Wallet</p>
+                <div className="flex justify-between">
+                    <p className='font-bold text-xl py-4'>Wallet</p>
+                    <UserAvatar />
+                </div>
                 <div className="flex space-x-3">
-                    <TotalBalance />
-                    <div className="overviews flex flex-grow space-x-4">
-                        <div className="p-4 rounded-lg bg-white flex text-black shadow-sm space-x-4 items-center">
-                            <p className='font-bold text-xl'>Last 30 days</p>
-                            <MdOutlineArrowDropDown />
-                        </div>
-                        <div className="rounded-lg text-black shadow-sm flex items-center space-x-4 flex-grow">
-                            <div className='space-y-2 p-4 w-[33.33%] bg-white'>
-                                <p className='text-[#c2c2c2] text-sm'>Transactions</p>
-                                <p className='text-xl font-bold'>{consts.transactions.length}</p>
-                            </div>
-                            <div className='space-y-2 p-4 w-[33.33%] bg-white'>
-                                <p className='text-[#c2c2c2] text-sm'>Total spend</p>
-                                <p className='text-xl font-bold'>{formatVNDCurrency(calcTotalExpense())}</p>
-                            </div>
-                            <div className='space-y-2 p-4 w-[33.33%] bg-white'>
-                                <p className='text-[#c2c2c2] text-sm'>Total income</p>
-                                <p className='text-xl font-bold'>{formatVNDCurrency(calcTotalIncome())}</p>
-                            </div>
-                        </div>
-                    </div>
+                    <TotalBalance transactions={transactions}/>
+                    <Dashboard transactions={transactions}/>
                 </div>
                 <div className="flex">
                     <div className='rounded-md bg-[#ffffff] p-4 shadow-sm space-y-4 w-[280px]'>

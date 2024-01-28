@@ -6,7 +6,6 @@ import { Checkbox } from "@nextui-org/react";
 import Logo from "../components/common/Logo";
 import { Link, useNavigate } from "react-router-dom";
 import userService from "../services/userService";
-import { useAuth } from '../contexts/AuthContext'
 import { useAuthStore } from "../stores/useUserStore";
 
 const Login = () => {
@@ -16,7 +15,6 @@ const Login = () => {
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     const navigate = useNavigate();
-    const { dispatchAuthAction } = useAuth();
 
     useEffect(() => {
         setDisabled(!!(email && isValidEmail(email) && password))
@@ -29,6 +27,7 @@ const Login = () => {
             if(response && response.data) {
                 console.log("Result login: ", response.data);
                 useAuthStore.getState().setToken(response.data.accessToken)
+                useAuthStore.getState().setRefreshToken(response.data.refreshToken)
                 setIsLoading(false);
                 navigate('/');
             }
