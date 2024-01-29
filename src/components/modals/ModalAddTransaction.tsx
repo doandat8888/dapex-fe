@@ -32,15 +32,15 @@ const ModalAddTransaction = ({ isOpen, onCloseModal }: Props) => {
         },
         onSubmit: async (values) => {
             if (user && user._id) {
-                let currentTime = new Date();
-                let transaction: Transaction = {
+                const currentTime = new Date();
+                const transaction: Transaction = {
                     ...values,
                     amount: parseInt(values.amount),
                     userId: user._id,
                     createdAt: convertDateToISO(currentTime)
                 }
                 try {
-                    let response = await transactionService.addTransaction(transaction);
+                    const response = await transactionService.addTransaction(transaction);
                     if (response && response.data) {
                         alert('Create transaction successfully!');
                         formik.resetForm();
